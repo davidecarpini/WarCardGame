@@ -50,20 +50,26 @@ struct ContentView: View {
     }
     
     func deal() {
-        let playerCardValue = Int.random(in: 2...14)
-        // remove the playerCard from the possible values for the cpuCard
-        let possibleCpuCardValues = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].filter { $0 != playerCardValue }
-        let cpuCardValue = possibleCpuCardValues.randomElement()!
-        // Randomize the player card
-        playerCard = "card" + String(playerCardValue)
-        // Randomize the cpu card
-        cpuCard = "card" + String(cpuCardValue)
-        // Update the scores
+        // Define the valid card range
+        let minCard = 2
+        let maxCard = 14
+        let cardRange = minCard...maxCard
+        
+        // Generate random cards, ensuring they're different
+        let playerCardValue = Int.random(in: cardRange)
+        let cpuCardValue = (cardRange.filter { $0 != playerCardValue }).randomElement()!
+        
+        // Update card images
+        playerCard = "card\(playerCardValue)"
+        cpuCard = "card\(cpuCardValue)"
+        
+        // Compare cards and update score
         if playerCardValue > cpuCardValue {
             playerScore += 1
-        } else {
+        } else if playerCardValue < cpuCardValue {
             cpuScore += 1
         }
+        // Note: If cards are equal, no points awarded
     }
 }
 
