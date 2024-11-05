@@ -12,7 +12,7 @@ War Card Game is a simple implementation of the classic "War" card game. This pr
 
 ## Demo
 
-![War Card Game Demo](video.mov)
+![War Card Game Demo](video.gif)
 
 ## Installation
 
